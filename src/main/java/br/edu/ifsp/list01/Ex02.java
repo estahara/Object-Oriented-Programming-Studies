@@ -24,11 +24,38 @@ public class Ex02 {
         //Leia o input
         //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
         //Escreva o resultado da chamada do método compute() aqui
+        Ex02 ex = new Ex02();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite os tres valores a,b e c, respectivamente:");
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int c = scanner.nextInt();
+
+        System.out.println(ex.compute(a,b,c));
+
     }
 
     String compute(int a, int b, int c) {
-        String output = null;
+
+        if (a <= 0 || b <= 0 || c <= 0) {
+            return "Erro";
+        } else {
+            if ((a + b < c) || (b + c < a)) {
+                return "Nao forma triangulo";
+            } else  if ((a == b && a != c) || (a == c && a != b)) {
+                return "Isosceles";
+            } else if (a == b && a == c) {
+                return "Equilatero";
+            } else if (a != b && a != c && c != b) {
+                return "Escaleno";
+            } else {
+                return "Erro";
+            }
+        }
+
+
         //put your logic here
-        return output;
+
     }
 }

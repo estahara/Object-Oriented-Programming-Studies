@@ -1,4 +1,5 @@
 package br.edu.ifsp.list01;
+import java.util.Scanner;
 
 /*
     Uma livraria está fazendo uma promoção para pagamento a vista. O comprador pode escolher entre dois planos de pagamento:
@@ -13,9 +14,15 @@ package br.edu.ifsp.list01;
     Exemplo 4: Entrada = -5 | Saída = Erro
     Qualquer valor fora do domínio de entrada tem como saída esperada a String "Erro".
 */
-class Ex01 {
+public class Ex01 {
 
     public static void main(String[] args) {
+        Ex01 ex = new Ex01();
+        Scanner scanner = new Scanner(System.in);
+
+        int qtdLivros = scanner.nextInt();
+
+        System.out.println(ex.compute(qtdLivros));
 //        final Scanner scanner = new Scanner(System.in);
 //        final int input = scanner.nextInt();
 //        final Ex01 ex01 = new Ex01();
