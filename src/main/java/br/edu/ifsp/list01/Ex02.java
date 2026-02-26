@@ -21,9 +21,6 @@ import java.util.Scanner;
 public class Ex02 {
 
     public static void main(String[] args) {
-        //Leia o input
-        //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
-        //Escreva o resultado da chamada do método compute() aqui
         Ex02 ex = new Ex02();
         Scanner scanner = new Scanner(System.in);
 
@@ -53,9 +50,6 @@ public class Ex02 {
                 return "Erro";
             }
         }
-
-
-        //put your logic here
 
     }
 }

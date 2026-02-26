@@ -23,10 +23,6 @@ public class Ex01 {
         int qtdLivros = scanner.nextInt();
 
         System.out.println(ex.compute(qtdLivros));
-//        final Scanner scanner = new Scanner(System.in);
-//        final int input = scanner.nextInt();
-//        final Ex01 ex01 = new Ex01();
-//        System.out.println(ex01.compute(input));
     }
 
     String compute(int qtdLivros) {
