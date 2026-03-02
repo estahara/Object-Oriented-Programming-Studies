@@ -1,5 +1,7 @@
 package br.edu.ifsp.list01;
 
+import java.util.Scanner;
+
 /*
     Você está na Austrália treinando cangurus para se locomoverem em linha reta. Você quer saber se dois cangurus
     estarão na mesma posição em um determinado tempo, dado a posição inicial de cada canguru e qual a distância que
@@ -20,6 +22,7 @@ package br.edu.ifsp.list01;
     | 0  3  4  2 | SIM    |
     | 0  2  5  3 | NAO    |
 
+
     Fonte: Adaptado de https://www.hackerrank.com/challenges/kangaroo/problem
 
     => Exercício gentilmente cedido pelos profs. Jorge Cutigi e Adenilso Simão (ICMC/USP)
@@ -29,11 +32,36 @@ public class Ex10 {
         //Leia o input
         //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
         //Escreva o resultado da chamada do método compute() aqui
+
+        Ex10 ex = new Ex10();
+        Scanner scanner = new Scanner(System.in);
+
+        int X1 = scanner.nextInt();
+        int V1 = scanner.nextInt();
+        int X2 = scanner.nextInt();
+        int V2 = scanner.nextInt();
+
+        System.out.println(ex.compute(X1,V1,X2,V2));
+
     }
 
     String compute(int x1, int v1, int x2, int v2) {
-        String output = null;
-        //put your logic here
-        return output;
+        if (v1 == v2) {
+            if (x1 == x2)
+                return "SIM";
+            else
+                return "NAO";
+        }
+
+        int diferencaPos = x2 - x1;
+        int diferencaVel = v1 - v2;
+
+        if (diferencaPos % diferencaVel == 0 &&
+                diferencaPos / diferencaVel >= 0) {
+            return "SIM";
+        }
+
+        return "NAO";
+
     }
 }

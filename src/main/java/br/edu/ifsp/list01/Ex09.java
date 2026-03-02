@@ -1,5 +1,7 @@
 package br.edu.ifsp.list01;
 
+import java.util.Scanner;
+
 /*
     Faça um programa que leia um conjunto de valores que correspondem as idades de pessoas de uma comunidade. Quando
     o valor fornecido for um número negativo, significa que não existem mais idades para serem lidas. Após a leitura,
@@ -22,11 +24,48 @@ public class Ex09 {
         //Leia o input
         //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
         //Escreva o resultado da chamada do método compute() aqui
+        Ex09 ex = new Ex09();
+        Scanner scanner = new Scanner(System.in);
+
+        int[] idades = new int[100];
+
+        int idade = scanner.nextInt();
+        int contador = 0;
+
+        if(idade < 0) {
+            System.out.println("Erro");
+        } else {
+            while (idade >= 0) {
+                idades[contador] = idade;
+                contador++;
+                idade = scanner.nextInt();
+            }
+
+            System.out.println(ex.compute(idades, contador));
+
+        }
+
     }
 
-    String compute(int[] input) {
-        String output = null;
-        //put your logic here
-        return output;
+    String compute(int[] input, int len) {
+        double media = 0;
+        int maiorIdade = 0;
+        int qtdIdosos = 0;
+
+        for (int i = 0; i < len; i++) {
+            media += input[i];
+
+            if (input[i] >= 18)
+                maiorIdade++;
+
+            if (input[i] > 75)
+                qtdIdosos++;
+        }
+
+
+        media = media / len;
+        double porcentagemIdosos = ((double) qtdIdosos / len) * 100.00;
+
+        return String.format("%.2f %d %.2f%%", media, maiorIdade, porcentagemIdosos);
     }
 }
