@@ -1,5 +1,7 @@
 package br.edu.ifsp.list02;
 
+import java.util.Scanner;
+
 /*
     Um robô possui um sensor de infravermelho para navegação e mapeamento que emite 181 feixes com um intervalo de um
     grau entre cada um deles (-90° na extrema-esquerda (feixe 0), 0° no centro (feixe 90) e 90° na extrema direita
@@ -29,15 +31,67 @@ package br.edu.ifsp.list02;
     Qualquer valor fora do domínio de entrada tem como saída esperada a String "Erro".
  */
 public class Ex10 {
+
     public static void main(String[] args) {
-        //Leia o input
-        //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
-        //Escreva o resultado da chamada do método compute() aqui
+
+        Scanner scanner = new Scanner(System.in);
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int x = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int y = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int a = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int f = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int d = scanner.nextInt();
+
+        Ex10 ex = new Ex10();
+        String result = ex.compute(x, y, a, f, d);
+
+        if (result == null)
+            System.out.println("Erro");
+        else
+            System.out.println(result);
     }
 
     String compute(int x, int y, int a, int f, int d) {
-        String output = null;
-        //put your logic here
-        return output;
+
+        if (f < 0 || f > 180)
+            return null;
+
+        if (d < 0 || d > 8)
+            return null;
+
+        double angleDegrees = a + (f - 90);
+        double angleRadians = Math.toRadians(angleDegrees);
+
+        double x2 = x + d * Math.cos(angleRadians);
+        double y2 = y + d * Math.sin(angleRadians);
+
+        int finalX = (int) Math.round(x2);
+        int finalY = (int) Math.round(y2);
+
+        return "(" + finalX + "," + finalY + ")";
     }
 }
