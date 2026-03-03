@@ -1,5 +1,7 @@
 package br.edu.ifsp.list02;
 
+import java.util.Scanner;
+
 /*
     Você está de volta em seu hotel na Tailândia depois de um dia de mergulhos. O seu quarto tem duas lâmpadas, chamadas
     de A e B. No hotel há dois interruptores, que chamaremos de C1 e C2. Ao apertar C1, a lâmpada A acende se estiver
@@ -26,15 +28,79 @@ package br.edu.ifsp.list02;
     => Exercício gentilmente cedido pelos profs. Jorge Cutigi e Adenilso Simão (ICMC/USP)
  */
 public class Ex04 {
+
     public static void main(String[] args) {
-        //Leia o input
-        //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
-        //Escreva o resultado da chamada do método compute() aqui
+
+        Scanner scanner = new Scanner(System.in);
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int ia = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int ib = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int fa = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("Erro");
+            return;
+        }
+        int fb = scanner.nextInt();
+
+        Ex04 ex = new Ex04();
+        int result = ex.compute(ia, ib, fa, fb);
+
+        if (result == -1)
+            System.out.println("Erro");
+        else
+            System.out.println(result);
     }
 
     int compute(int ia, int ib, int fa, int fb) {
-        int output = -1;
-        //put your logic here
-        return output;
+
+        if ((ia != 0 && ia != 1) ||
+            (ib != 0 && ib != 1) ||
+            (fa != 0 && fa != 1) ||
+            (fb != 0 && fb != 1))
+            return -1;
+
+        int min = Integer.MAX_VALUE;
+
+        for (int c1 = 0; c1 <= 1; c1++) {
+            for (int c2 = 0; c2 <= 1; c2++) {
+
+                int a = ia;
+                int b = ib;
+
+                if (c1 % 2 == 1)
+                    a = 1 - a;
+
+                if (c2 % 2 == 1) {
+                    a = 1 - a;
+                    b = 1 - b;
+                }
+
+                if (a == fa && b == fb) {
+                    int presses = c1 + c2;
+                    if (presses < min)
+                        min = presses;
+                }
+            }
+        }
+
+        if (min == Integer.MAX_VALUE)
+            return -1;
+
+        return min;
     }
 }
