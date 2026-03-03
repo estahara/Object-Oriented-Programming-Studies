@@ -1,5 +1,7 @@
 package br.edu.ifsp.list02;
 
+import java.util.Scanner;
+
 /*
     Uma loja especializada em vendas pela internet está desenvolvendo drones para entrega de caixas com as compras dos
     clientes. Cada caixa tem a forma de um paralelepípedo reto retângulo (ou seja, no formato de um tijolo).
@@ -42,15 +44,65 @@ package br.edu.ifsp.list02;
     => Exercício gentilmente cedido pelos profs. Jorge Cutigi e Adenilso Simão (ICMC/USP)
  */
 public class Ex09 {
+
     public static void main(String[] args) {
-        //Leia o input
-        //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
-        //Escreva o resultado da chamada do método compute() aqui
+
+        Scanner scanner = new Scanner(System.in);
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int a = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int b = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int c = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int h = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int l = scanner.nextInt();
+
+        Ex09 ex = new Ex09();
+        System.out.println(ex.compute(a, b, c, h, l));
     }
 
     String compute(int a, int b, int c, int h, int l) {
-        String output = null;
-        //put your logic here
-        return output;
+
+        if (a <= 0 || b <= 0 || c <= 0 || h <= 0 || l <= 0)
+            return "N";
+
+        int[][] faces = {
+            {a, b},
+            {a, c},
+            {b, c}
+        };
+
+        for (int i = 0; i < 3; i++) {
+
+            int x = faces[i][0];
+            int y = faces[i][1];
+
+            if ((x <= h && y <= l) || (x <= l && y <= h))
+                return "S";
+        }
+
+        return "N";
     }
 }

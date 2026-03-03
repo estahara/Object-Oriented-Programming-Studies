@@ -1,5 +1,7 @@
 package br.edu.ifsp.list02;
 
+import java.util.Scanner;
+
 /*
     Todos os Natais o Papai Noel se prepara para embarcar em seu trenó todos os N presentes a serem entregues.
     A área em que os presentes ficam no trenó pode ser dividida em dois lados: o lado A e o lado B. Para que o trenó
@@ -29,15 +31,61 @@ package br.edu.ifsp.list02;
     => Exercício gentilmente cedido pelos profs. Jorge Cutigi e Adenilso Simão (ICMC/USP)
  */
 public class Ex08 {
+
     public static void main(String[] args) {
-        //Leia o input
-        //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
-        //Escreva o resultado da chamada do método compute() aqui
+
+        Scanner scanner = new Scanner(System.in);
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+
+        int n = scanner.nextInt();
+
+        if (n <= 0) {
+            System.out.println("N");
+            return;
+        }
+
+        int[] gifts = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            if (!scanner.hasNextInt()) {
+                System.out.println("N");
+                return;
+            }
+            gifts[i] = scanner.nextInt();
+        }
+
+        Ex08 ex = new Ex08();
+        System.out.println(ex.compute(gifts));
     }
 
     String compute(int[] giftsWeights) {
-        String output = null;
-        //put your logic here
-        return output;
+
+        if (giftsWeights == null || giftsWeights.length == 0)
+            return "N";
+
+        int sumA = 0;
+        int sumB = 0;
+
+        for (int i = 0; i < giftsWeights.length; i++) {
+
+            int weight = giftsWeights[i];
+
+            if (weight < 0)
+                return "N";
+
+            if (sumA <= sumB)
+                sumA += weight;
+            else
+                sumB += weight;
+
+            if (Math.abs(sumA - sumB) > 5)
+                return "N";
+        }
+
+        return "S";
     }
 }

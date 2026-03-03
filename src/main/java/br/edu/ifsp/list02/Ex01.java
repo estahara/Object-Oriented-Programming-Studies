@@ -22,30 +22,39 @@ public class Ex01 {
 
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
+        int[] temperatures = new int[DAYS_IN_WEEK];
 
-        final int[] temperatures = new int[DAYS_IN_WEEK];
-        final Scanner scanner = new Scanner(System.in);
-
-        for (int i = 0; i < temperatures.length; i++) {
+        for (int i = 0; i < DAYS_IN_WEEK; i++) {
             temperatures[i] = scanner.nextInt();
         }
 
-        final Ex01 ex01 = new Ex01();
-        System.out.println(ex01.compute(temperatures));
+        Ex01 ex01 = new Ex01();
+        String result = ex01.compute(temperatures);
+        System.out.println(result);
     }
 
-    int compute(int[] temperatures) {
-        int temperaturesAboveAverage = 0;
-        double sumOfTemperatures = 0;
+    String compute(int[] temperatures) {
 
-        for (int temperature : temperatures)
-            sumOfTemperatures += temperature;
+        if (temperatures == null || temperatures.length != DAYS_IN_WEEK) {
+            return "Erro";
+        }
 
-        final double meanOfTemperatures = sumOfTemperatures / DAYS_IN_WEEK;
+        int sum = 0;
+        int aboveAverage = 0;
 
-        for (int temperature : temperatures)
-            if(temperature > meanOfTemperatures) temperaturesAboveAverage++;
+        for (int i = 0; i < DAYS_IN_WEEK; i++) {
+            sum += temperatures[i];
+        }
 
-        return temperaturesAboveAverage;
+        double mean = (double) sum / DAYS_IN_WEEK;
+
+        for (int i = 0; i < DAYS_IN_WEEK; i++) {
+            if (temperatures[i] > mean) {
+                aboveAverage++;
+            }
+        }
+
+        return String.format("%d", aboveAverage);
     }
 }

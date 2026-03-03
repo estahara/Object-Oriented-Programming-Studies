@@ -28,36 +28,49 @@ public class Ex02 {
     public static final int NUM_VALUES = 5;
 
     public static void main(String[] args) {
+
         final int[] arrayA = new int[NUM_VALUES];
         final int[] arrayB = new int[NUM_VALUES];
         final Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(Locale.US);
 
-        for (int i = 0; i < arrayA.length; i++)
+        for (int i = 0; i < NUM_VALUES; i++)
             arrayA[i] = scanner.nextInt();
 
-        for (int i = 0; i < arrayB.length; i++)
+        for (int i = 0; i < NUM_VALUES; i++)
             arrayB[i] = scanner.nextInt();
 
-        final Ex02 ex02 = new Ex02();//
+        final Ex02 ex02 = new Ex02();
         System.out.println(ex02.compute(arrayA, arrayB));
     }
 
     String compute(int[] arrayA, int[] arrayB) {
-        final var arrayC = new int[NUM_VALUES];
 
-        for (int i = 0; i < arrayC.length; i++) {
-            if(sumOverflowsOrUnderflows(arrayA[i], arrayB[i])) return "Erro";
+        if (arrayA == null || arrayB == null)
+            return "Erro";
+
+        if (arrayA.length != NUM_VALUES || arrayB.length != NUM_VALUES)
+            return "Erro";
+
+        final int[] arrayC = new int[NUM_VALUES];
+
+        for (int i = 0; i < NUM_VALUES; i++) {
+            if (sumOverflowsOrUnderflows(arrayA[i], arrayB[i]))
+                return "Erro";
+
             arrayC[i] = arrayA[i] + arrayB[i];
         }
 
-        final var joiner = new StringJoiner(", ");
-        for (int value : arrayC) joiner.add(String.valueOf(value));
+        final StringJoiner joiner = new StringJoiner(", ");
+
+        for (int value : arrayC)
+            joiner.add(String.valueOf(value));
 
         return joiner.toString();
     }
 
     private static boolean sumOverflowsOrUnderflows(int aNumber, int otherNumber) {
-        return (long) aNumber + otherNumber > Integer.MAX_VALUE ||
-                (long) aNumber + otherNumber < Integer.MIN_VALUE;
+        long result = (long) aNumber + otherNumber;
+        return result > Integer.MAX_VALUE || result < Integer.MIN_VALUE;
     }
 }

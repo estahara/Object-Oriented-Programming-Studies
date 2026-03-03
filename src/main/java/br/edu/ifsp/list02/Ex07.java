@@ -1,5 +1,8 @@
 package br.edu.ifsp.list02;
 
+import java.util.Scanner;
+
+
 /*
     Clara está organizando as fotos da sua última viagem num álbum de fotos. Como ela tem muitas fotos, para economizar
     páginas do álbum ela quer colar duas fotos por página do álbum.
@@ -40,15 +43,83 @@ package br.edu.ifsp.list02;
     => Exercício gentilmente cedido pelos profs. Jorge Cutigi e Adenilso Simão (ICMC/USP)
  */
 public class Ex07 {
+
     public static void main(String[] args) {
-        //Leia o input
-        //Crie uma variável do tipo deste arquivo. Exemplo: Ex02 ex = new Ex02();
-        //Escreva o resultado da chamada do método compute() aqui
+
+        Scanner scanner = new Scanner(System.in);
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int x = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int y = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int l1 = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int h1 = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int l2 = scanner.nextInt();
+
+        if (!scanner.hasNextInt()) {
+            System.out.println("N");
+            return;
+        }
+        int h2 = scanner.nextInt();
+
+        Ex07 ex = new Ex07();
+        System.out.println(ex.compute(x, y, l1, h1, l2, h2));
     }
 
     String compute(int x, int y, int l1, int h1, int l2, int h2) {
-        String output = null;
-        //put your logic here
-        return output;
+
+        if (x <= 0 || y <= 0 || l1 <= 0 || h1 <= 0 || l2 <= 0 || h2 <= 0)
+            return "N";
+
+        boolean possible = false;
+
+        int[][] f1 = { { l1, h1 }, { h1, l1 } };
+        int[][] f2 = { { l2, h2 }, { h2, l2 } };
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+
+                int w1 = f1[i][0];
+                int h_1 = f1[i][1];
+                int w2 = f2[j][0];
+                int h_2 = f2[j][1];
+
+                if (w1 <= x && h_1 <= y && w2 <= x && h_2 <= y) {
+
+                    if (w1 + w2 <= x && Math.max(h_1, h_2) <= y)
+                        possible = true;
+
+                    if (h_1 + h_2 <= y && Math.max(w1, w2) <= x)
+                        possible = true;
+                }
+            }
+        }
+
+        if (possible)
+            return "S";
+
+        return "N";
     }
 }
