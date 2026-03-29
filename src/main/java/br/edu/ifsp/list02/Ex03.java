@@ -1,6 +1,6 @@
 package br.edu.ifsp.list02;
 
-import java.util.scanner;
+import java.util.Scanner;
 
 /*
     Leia um conjunto de cinco números inteiros não repetidos em uma única linha e os armazene em um vetor de 10 posições.
