@@ -4,8 +4,8 @@ public class Principal {
 
     void main() {
 
-        UserAccount lucas = new UserAccount("lucaonarigao@gmail.com", "lucao");
-        UserAccount alek = new UserAccount("alekaotiltadao@gmail.com", "alekao");
+        UserAccount lucas = new UserAccount("lucao@gmail.com", "lucao");
+        UserAccount alek = new UserAccount("alekao@gmail.com", "alekao");
 
         lucas.acceptFollower(alek);
         alek.acceptFollower(lucas);
