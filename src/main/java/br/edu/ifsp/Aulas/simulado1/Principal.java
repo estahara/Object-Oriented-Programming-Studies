@@ -4,15 +4,15 @@ public class Principal {
 
     void main() {
 
-        UserAccount lucas = new UserAccount("lucaonarigao@gmail.com", "lucao");
-        UserAccount alek = new UserAccount("alekaotiltadao@gmail.com", "alekao");
+        UserAccount lucas = new UserAccount("lucao@gmail.com", "lucao");
+        UserAccount alek = new UserAccount("alekao@gmail.com", "alekao");
 
         lucas.acceptFollower(alek);
         alek.acceptFollower(lucas);
 
-        lucas.publish("Meu nariz tem 10 metros");
-        lucas.publish("teste");
-        alek.publish("Eu tilto em joguinho online");
+        lucas.publish("Oi este é meu primeiro post");
+        lucas.publish("Segundo post");
+        alek.publish("Primeiro post");
 
         System.out.println(alek.showTimeline());
 
