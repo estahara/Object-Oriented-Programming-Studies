@@ -1,3 +1,5 @@
+package main.java.br.edu.ifsp.Aulas.aula05.exFigures;
+
 public final class Triangle extends Figure{
     private final double a;
     private final double b;
@@ -18,7 +20,7 @@ public final class Triangle extends Figure{
 
     @Override
     public String toString() {
-        return "Triangle{" +
+        return "main.java.br.edu.ifsp.Aulas.aula05.exFigures.Triangle{" +
                 "a=" + a +
                 ", b=" + b +
                 ", c=" + c +

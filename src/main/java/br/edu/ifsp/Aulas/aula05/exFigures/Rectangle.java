@@ -1,3 +1,5 @@
+package main.java.br.edu.ifsp.Aulas.aula05.exFigures;
+
 public final class Rectangle extends Figure {
     private final double width;
     private final double length;
@@ -15,7 +17,7 @@ public final class Rectangle extends Figure {
 
     @Override
     public String toString() {
-        return "Rectangle{" +
+        return "main.java.br.edu.ifsp.Aulas.aula05.exFigures.Rectangle{" +
                 "width=" + width +
                 ", length=" + length +
                 '}';

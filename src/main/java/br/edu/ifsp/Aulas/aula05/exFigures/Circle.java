@@ -1,3 +1,5 @@
+package main.java.br.edu.ifsp.Aulas.aula05.exFigures;
+
 public final class Circle extends Figure{
     private final double radius;
 
@@ -13,7 +15,7 @@ public final class Circle extends Figure{
 
     @Override
     public String toString() {
-        return "Circle{" +
+        return "main.java.br.edu.ifsp.Aulas.aula05.exFigures.Circle{" +
                 "radius=" + radius +
                 '}';
     }

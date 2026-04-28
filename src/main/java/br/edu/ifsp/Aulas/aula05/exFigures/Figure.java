@@ -1,3 +1,5 @@
+package main.java.br.edu.ifsp.Aulas.aula05.exFigures;
+
 import java.util.Objects;
 
 public sealed class Figure permits Circle, Rectangle, Triangle{
@@ -44,7 +46,7 @@ public sealed class Figure permits Circle, Rectangle, Triangle{
 
     @Override
     public String toString() {
-        return "Figure{" +
+        return "main.java.br.edu.ifsp.Aulas.aula05.exFigures.Figure{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';
