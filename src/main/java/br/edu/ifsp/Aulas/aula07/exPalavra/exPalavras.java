@@ -1,8 +1,6 @@
-package main.java.br.edu.ifsp.Aulas.aula07;
+package main.java.br.edu.ifsp.Aulas.aula07.exPalavra;
 
 import java.util.*;
-
-import static java.util.Collections.*;
 
 public class exPalavras {
     static void main() {
