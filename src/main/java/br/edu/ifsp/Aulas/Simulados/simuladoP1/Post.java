@@ -1,4 +1,4 @@
-package main.java.br.edu.ifsp.Aulas.simulado1;
+package main.java.br.edu.ifsp.Aulas.Simulados.simuladoP1;
 
 import java.time.LocalDate;
 
