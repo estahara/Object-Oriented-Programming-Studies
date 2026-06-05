@@ -1,87 +1,77 @@
 package Aulas.aula10.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Team {
+
+    private static final int MAX_PLAYERS = 18;
+
     private String name;
     private String baseLocation;
     private String coachName;
-    private Player[] team = new Player[18];
-    private int playerCount = 0;
-    private Player teamCaptain;
+    private final List<Player> players = new ArrayList<>();
+    private Player captain;
 
-    public Team(String name, String baseLocation, String coachName, Player[] team, int playerCount) {
+    public Team(String name, String baseLocation, String coachName) {
         this.name = name;
         this.baseLocation = baseLocation;
         this.coachName = coachName;
     }
 
     public void addPlayer(Player player) {
-        if (playerCount < 18) { team[playerCount++] = player; }
+        if (players.size() >= MAX_PLAYERS) {
+            throw new IllegalStateException("O time já possui " + MAX_PLAYERS + " jogadores.");
+        }
+        if (players.stream().anyMatch(p -> p.getNumber() == player.getNumber())) {
+            throw new IllegalArgumentException("Já existe jogador com o número: " + player.getNumber());
+        }
+
+        players.add(player);
     }
 
     public void removePlayer(Player player) {
-        if (playerCount != 0) {
-
-            for (int i = 0; i < playerCount; i++) {
-                if (player.equals(team[i])) {
-                    if (playerCount == 1 || i == 17) {
-                        team[i] = null;
-                        playerCount--;
-                        break;
-                    } else {
-                        for (int j = i + 1; j < playerCount; j++) {
-                            team[i++] = team[j];
-                        }
-                        team[playerCount - 1] = null;
-                        playerCount--;
-                        break;
-                    }
-                }
-            }
+        if (!players.remove(player)) {
+            throw new IllegalArgumentException("Jogador não encontrado no time.");
         }
+        if (captain != null && captain.equals(player)) {
+            captain = null;
+        }
+
+        players.remove(player);
     }
 
     public void substitute(Player substitute, Player starter) {
-        if (playerCount != 0) {
-            for (int i = 0; i < playerCount; i++) {
-                if (team[i].equals(starter)) {
-                    team[i] = substitute;
-                    starter.setFielded(false);
-                    substitute.setFielded(true);
-                    break;
-                }
-            }
+        if (!players.contains(starter)) {
+            throw new IllegalArgumentException("Titular não pertence ao time.");
+        }
+        if (!players.contains(substitute)) {
+            throw new IllegalArgumentException("Substituto não pertence ao time.");
+        }
+        if (!starter.isFielded()) {
+            throw new IllegalStateException("O titular já está no banco.");
+        }
+        if (substitute.isFielded()) {
+            throw new IllegalStateException("O substituto já está no campo.");
         }
 
+        starter.setFielded(false);
+        substitute.setFielded(true);
     }
 
     public void setCaptain(Player captain) {
-        teamCaptain = captain;
+        if (!players.contains(captain)) {
+            throw new IllegalArgumentException("O capitão deve pertencer ao time.");
+        }
+        this.captain = captain;
     }
 
     public Player[] getFieldedPlayers() {
-        Player[] fieldedPlayers = new Player[18];
-        int countFieldedPlayers = 0;
-
-        for (int i = 0; i < playerCount; i++) {
-            if (team[i].isFielded()) {
-                fieldedPlayers[countFieldedPlayers++] = team[i];
-            }
-        }
-
-        return fieldedPlayers;
+        return players.stream().filter(Player::isFielded).toArray(Player[]::new);
     }
 
     public Player[] getOutfieldedPlayers() {
-        Player[] outfieldedPlayers = new Player[18];
-        int countOutfieldedPlayers = 0;
-
-        for (int i = 0; i < playerCount; i++) {
-            if (!team[i].isFielded()) {
-                outfieldedPlayers[countOutfieldedPlayers++] = team[i];
-            }
-        }
-
-        return outfieldedPlayers;
+        return players.stream().filter(p -> !p.isFielded()).toArray(Player[]::new);
     }
 
     public String getName() {return name;}
@@ -90,6 +80,13 @@ public class Team {
     public void setBaseLocation(String baseLocation) {this.baseLocation = baseLocation;}
     public String getCoachName() {return coachName;}
     public void setCoachName(String coachName) {this.coachName = coachName;}
-    public Player getTeamCaptain() {return teamCaptain;}
-    public void setTeamCaptain(Player teamCaptain) {this.teamCaptain = teamCaptain;}
+    public Player getCaptain() {return captain;}
+    public List<Player> getPlayers() {return players;}
+
+    @Override
+    public String toString() {
+        return String.format("Nome: %s | sede: %s | coach: %s | captain: %s | jogadores: %d",
+                name, baseLocation, coachName, captain != null ? captain.getName() : "Nenhum", players.size());
+    }
+
 }
