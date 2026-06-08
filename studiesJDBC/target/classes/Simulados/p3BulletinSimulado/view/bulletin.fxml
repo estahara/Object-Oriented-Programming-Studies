@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="Simulados.p3BulletinSimulado.controller.BulletinController"
+            prefWidth="400" prefHeight="420">
+
+    <GridPane layoutX="20" layoutY="20"
+              hgap="10" vgap="12">
+        <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+        <Label text="Cidade:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCity" prefWidth="220"
+                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Estado:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cbState" prefWidth="220"
+                  GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Data:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <DatePicker fx:id="dpDate" prefWidth="220"
+                    GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Infectados no dia:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtInfected" prefWidth="220"
+                   GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Mortos no dia:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtDeaths" prefWidth="220"
+                   GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Leitos ocupados (%):" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIcuRatio" prefWidth="220"
+                   GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <HBox spacing="10" GridPane.rowIndex="6" GridPane.columnIndex="1">
+            <Button text="Salvar"   onAction="#save"/>
+            <Button text="Cancelar" onAction="#cancel"/>
+        </HBox>
+
+    </GridPane>
+</AnchorPane>
